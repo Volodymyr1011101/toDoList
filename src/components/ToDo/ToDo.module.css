@@ -1,0 +1,1 @@
+.mainWrapper{@apply p-6 flex flex-col gap-8}@media screen and (min-width: 480px){.mainWrapper{@apply max-w-[45%] w-full}}.head{@apply z-10 relative flex justify-between items-center}.head h1{@apply font-bold text-3xl text-white tracking-[15px]}
