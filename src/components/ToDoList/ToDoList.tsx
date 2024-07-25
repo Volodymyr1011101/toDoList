@@ -53,29 +53,33 @@ const ToDoList: NextComponentType<NextPageContext, {}, Props> = ({ toDos, setToD
                 <Droppable droppableId={'droppable'}>
                     {provided => (
                         <ul className={`${styles.todoList}`} {...provided.droppableProps} ref={provided.innerRef}>
-                            {filteredToDos.map((todo, index) => (
-                                <Draggable key={todo.id} draggableId={todo.id} index={index}>
-                                    {provided => (
-                                        <li className={styles.todoItem} ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                            <input
-                                                type="checkbox"
-                                                id={todo.id}
-                                                className={styles.toDoCheckbox}
-                                                onChange={() => handleToggleComplete(todo.id)}
-                                            />
-                                            <label htmlFor={todo.id} className={`${styles.toDoLabel} ${todo.isComplete && styles.complete}`}>
-                                                <span className={`${styles.checkedIcon} ${todo.isComplete && styles.done}`}>
-                                                    {todo.isComplete && <Image {...imageConfig.checked} />}
-                                                </span>
-                                                {todo.todo}
-                                            </label>
-                                            <button onClick={() => handleDeleteToDoItem(todo.id)}>
-                                                <Image {...imageConfig.delete} />
-                                            </button>
-                                        </li>
-                                    )}
-                                </Draggable>
-                            ))}
+                            {filteredToDos.length > 0 ? (
+                                filteredToDos.map((todo, index) => (
+                                    <Draggable key={todo.id} draggableId={todo.id} index={index}>
+                                        {provided => (
+                                            <li className={styles.todoItem} ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                                                <input
+                                                    type="checkbox"
+                                                    id={todo.id}
+                                                    className={styles.toDoCheckbox}
+                                                    onChange={() => handleToggleComplete(todo.id)}
+                                                />
+                                                <label htmlFor={todo.id} className={`${styles.toDoLabel} ${todo.isComplete && styles.complete}`}>
+                                                    <span className={`${styles.checkedIcon} ${todo.isComplete && styles.done}`}>
+                                                        {todo.isComplete && <Image {...imageConfig.checked} />}
+                                                    </span>
+                                                    {todo.todo}
+                                                </label>
+                                                <button onClick={() => handleDeleteToDoItem(todo.id)}>
+                                                    <Image {...imageConfig.delete} />
+                                                </button>
+                                            </li>
+                                        )}
+                                    </Draggable>
+                                ))
+                            ) : (
+                                <li className={styles.emptyListItem}>You don't have any tasks yet</li>
+                            )}
                             {provided.placeholder}
                         </ul>
                     )}
