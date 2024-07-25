@@ -26,6 +26,7 @@
     @apply flex items-center justify-center;
     width: 25px;
     height: 25px;
+    min-width: 25px;
     border-radius: 50%;
     border: 1px solid #dbdada;
 }
